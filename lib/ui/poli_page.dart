@@ -1,21 +1,39 @@
-import 'package:flutter/material.dart';
-import '../model/poli.dart';
-import 'poli_detail.dart';
+// flutter => library
+// material => package
 
+// method => object Class
+// function => prosedural
+
+import 'package:flutter/material.dart'; // import package material dari flutter library
+import '../model/poli.dart'; // import model poli, disini hanya untuk kita melakukan inject variable untuk dapat dimasukkan ke poli detail
+import 'poli_detail.dart'; // import poli detail
+
+// disini class PoliPage inheritance dari ancestor Statefull, dimana akan menimbulkan event onclick untuk summon tab
 class PoliPage extends StatefulWidget {
-  const PoliPage({super.key});
+  const PoliPage(
+      {super.key}); // Potongan kode ini mendefinisikan sebuah konstruktor untuk kelas PoliPage yang menerima parameter opsional dengan nama key dan mengirimkannya ke konstruktor superclass menggunakan super.key.
 
+  // melakukan overriding
   @override
+  // Metode ini digunakan untuk membuat state untuk objek PoliPage.
   State<PoliPage> createState() => _PoliPageState();
 }
 
+// Potongan kode ini mendefinisikan sebuah kelas _PoliPageState yang meng-extend kelas State dan mengimplementasikan PoliPage sebagai type parameter. Kelas ini digunakan untuk mendefinisikan state untuk objek PoliPage.
 class _PoliPageState extends State<PoliPage> {
-  @override
+  // overriding
+  @override /* overriding */
+  // Potongan kode ini mendefinisikan metode build() yang mengembalikan objek Widget. Metode ini digunakan untuk membangun tampilan UI dari objek PoliPage. Parameter BuildContext context digunakan untuk mengakses konteks pembangunan yang digunakan untuk mengambil informasi seperti ukuran layar dan tema aplikasi.
   Widget build(BuildContext context) {
+    // mengembalikan antarmuka UI widget Scaffold pada laravel
     return Scaffold(
+      // title pada Navbar
       appBar: AppBar(title: const Text("Data Poli")),
+      // content body
       body: ListView(
+        // component pada body dideklarasikan pada method ListView
         children: [
+          // component card yang dideklarasikan pada method GestureDetector
           GestureDetector(
             child: Card(
               child: ListTile(
