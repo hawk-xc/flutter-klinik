@@ -30,30 +30,75 @@ class _PoliPageState extends State<PoliPage> {
                       builder: (context) => PoliDetail(poli: poliAnak)));
             },
           ),
-          Card(
-            child: ListTile(
-              title: const Text("Poli Kandungan"),
+          GestureDetector(
+            child: Card(
+              child: ListTile(
+                title: const Text("Poli Kandungan"),
+              ),
             ),
+            onTap: () {
+              Poli poliKandungan = new Poli(namaPoli: "Poli Kandungan");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PoliDetail(poli: poliKandungan)));
+            },
           ),
-          Card(
-            child: ListTile(
-              title: const Text("Poli Gigi"),
+          GestureDetector(
+            child: Card(
+              child: ListTile(
+                title: const Text("Poli Gigi"),
+              ),
             ),
+            onTap: () {
+              Poli poliGigi = new Poli(namaPoli: "Poli Gigi");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PoliDetail(poli: poliGigi)));
+            },
           ),
-          Card(
-            child: ListTile(
-              title: const Text("Poli Umum"),
+          GestureDetector(
+            child: Card(
+              child: ListTile(
+                title: const Text("Poli Umum"),
+              ),
             ),
+            onTap: () {
+              Poli poliUmum = new Poli(namaPoli: "Poli Umum");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PoliDetail(poli: poliUmum)));
+            },
           ),
-          Card(
-            child: ListTile(
-              title: const Text("Poli THT"),
+          GestureDetector(
+            child: Card(
+              child: ListTile(
+                title: const Text("Poli THT"),
+              ),
             ),
+            onTap: () {
+              Poli poliTHT = new Poli(namaPoli: "Poli THT");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PoliDetail(poli: poliTHT)));
+            },
           ),
-          Card(
-            child: ListTile(
-              title: const Text("Poli Jantung"),
+          GestureDetector(
+            child: Card(
+              child: ListTile(
+                title: const Text("Poli Jantung"),
+              ),
             ),
+            onTap: () {
+              Poli poliJantung = new Poli(namaPoli: "Poli Jantung");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PoliDetail(poli: poliJantung)));
+            },
           ),
         ],
       ),
