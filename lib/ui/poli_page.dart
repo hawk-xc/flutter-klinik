@@ -7,10 +7,13 @@
 import 'package:flutter/material.dart'; // import package material dari flutter library
 import '../model/poli.dart'; // import model poli, disini hanya untuk kita melakukan inject variable untuk dapat dimasukkan ke poli detail
 import 'poli_detail.dart'; // import poli detail
+import 'poli_item.dart'; // import poli item
+import 'poli_form.dart'; // import poli form
 
 // disini class PoliPage inheritance dari ancestor Statefull, dimana akan menimbulkan event onclick untuk summon tab
 class PoliPage extends StatefulWidget {
   const PoliPage(
+      // mendeklarasikan konstruktor PoliPage
       {super.key}); // Potongan kode ini mendefinisikan sebuah konstruktor untuk kelas PoliPage yang menerima parameter opsional dengan nama key dan mengirimkannya ke konstruktor superclass menggunakan super.key.
 
   // melakukan overriding
@@ -28,13 +31,43 @@ class _PoliPageState extends State<PoliPage> {
     // mengembalikan antarmuka UI widget Scaffold pada laravel
     return Scaffold(
       // title pada Navbar
-      appBar: AppBar(title: const Text("Data Poli")),
+      appBar: AppBar(
+        // app bar adalah nav
+        // title akan ditampilan sebagai header
+        title: const Text("Data Poli"),
+        // menambahkan icon pada navbar
+        // menambahkan event click pada navbar untuk event add new poli
+        actions: [
+          // component card yang dideklarasikan pada method GestureDetector
+          GestureDetector(
+            // component card yang dideklarasikan pada method GestureDetector
+            child: const Icon(Icons.add),
+            // menambahkan event click pada navbar untuk event add new poli
+            onTap: () {
+              // menambahkan event click pada navbar untuk event add new poli
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => PoliForm()));
+            },
+          )
+        ],
+      ),
       // content body
       body: ListView(
         // component pada body dideklarasikan pada method ListView
         children: [
+          // tambah pertemuan 5
+          // penyederhanaan setelah kita melakukan implementasi poli_item
+          //  deklarasi instance dari ancestor PoliItem
+          PoliItem(poli: Poli(namaPoli: "Poli Anak")),
+          PoliItem(poli: Poli(namaPoli: "Poli Kandungan")),
+          PoliItem(poli: Poli(namaPoli: "Poli Gigi")),
+          PoliItem(poli: Poli(namaPoli: "Poli THT")),
           // component card yang dideklarasikan pada method GestureDetector
-          GestureDetector(
+        ],
+
+/*
+kode sebelumnya
+GestureDetector(
             child: Card(
               child: ListTile(
                 title: const Text("Poli Anak"),
@@ -118,7 +151,7 @@ class _PoliPageState extends State<PoliPage> {
                       builder: (context) => PoliDetail(poli: poliJantung)));
             },
           ),
-        ],
+*/
       ),
     );
   }
