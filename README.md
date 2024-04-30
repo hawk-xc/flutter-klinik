@@ -3,6 +3,8 @@
 this repository have my flutter project
 =======
 # flutter_klinik
+## Output
+![image](https://github.com/hawk-xc/flutter-klinik/assets/92193431/f22697de-c2d4-4e31-b850-b2e9e1f2b3bf)
 
 A new Flutter project.
 
