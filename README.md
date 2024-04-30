@@ -5,6 +5,7 @@ this repository have my flutter project
 # flutter_klinik
 ## Output
 ![image](https://github.com/hawk-xc/flutter-klinik/assets/92193431/f22697de-c2d4-4e31-b850-b2e9e1f2b3bf)
+![image](https://github.com/hawk-xc/flutter-klinik/assets/92193431/5a2dd8d3-fae3-492b-90a3-df943722e350)
 
 A new Flutter project.
 
