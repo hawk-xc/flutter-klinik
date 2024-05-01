@@ -6,7 +6,7 @@
 
 import 'package:flutter/material.dart'; // import package material dari flutter library
 import '../model/poli.dart'; // import model poli, disini hanya untuk kita melakukan inject variable untuk dapat dimasukkan ke poli detail
-import 'poli_detail.dart'; // import poli detail
+import 'poli_detail.dart'; // import poli detail1
 import 'poli_item.dart'; // import poli item
 import 'poli_form.dart'; // import poli form
 
