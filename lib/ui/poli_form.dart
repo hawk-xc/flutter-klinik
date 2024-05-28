@@ -1,42 +1,45 @@
-// import flutter material
 import 'package:flutter/material.dart';
+import 'package:klinikapp/model/poli.dart';
+import 'package:klinikapp/ui/poli_detail.dart';
 
-// deklarasi class PoliItem dari ancestor StatefulWidget
 class PoliForm extends StatefulWidget {
-  // deklarasi constructor
   const PoliForm({Key? key}) : super(key: key);
   _PoliFormState createState() => _PoliFormState();
 }
 
-// deklarasi class _PoliFormState
 class _PoliFormState extends State<PoliForm> {
-  // deklarasi method build
   final _formKey = GlobalKey<FormState>();
+  final _namaPoliCtrl = TextEditingController();
+
   @override
-  // deklarasi method build
   Widget build(BuildContext context) {
-    // mengembalikan antarmuka UI widget Scaffold
     return Scaffold(
-      // title pada Navbar
       appBar: AppBar(title: const Text("Tambah Poli")),
-      // content body
       body: SingleChildScrollView(
-        // form widget
         child: Form(
-          // form key
           key: _formKey,
-          // column widget
           child: Column(
-            // tab event dari Statefull widget
-            children: [
-              TextField(
-                  decoration: const InputDecoration(labelText: "Nama Poli")),
-              SizedBox(height: 20),
-              ElevatedButton(onPressed: () {}, child: const Text("Simpan"))
-            ],
+            children: [_fieldNamaPoli(), SizedBox(height: 20), _tombolSimpan()],
           ),
         ),
       ),
     );
+  }
+
+  _fieldNamaPoli() {
+    return TextField(
+      decoration: const InputDecoration(labelText: "Nama Poli"),
+      controller: _namaPoliCtrl,
+    );
+  }
+
+  _tombolSimpan() {
+    return ElevatedButton(
+        onPressed: () {
+          Poli poli = new Poli(namaPoli: _namaPoliCtrl.text);
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => PoliDetail(poli: poli)));
+        },
+        child: const Text("Simpan"));
   }
 }

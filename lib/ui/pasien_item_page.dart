@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../model/pasien.dart';
-import 'pasien_detail.dart';
+import '../../model/pasien.dart';
+import 'pasien_detail_page.dart';
 
 class PasienItem extends StatelessWidget {
   final Pasien pasien;
@@ -16,10 +16,8 @@ class PasienItem extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => PasienDetail(pasien: pasien)));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PasienDetailPage(pasien: pasien)));
       },
     );
   }

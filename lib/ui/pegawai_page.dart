@@ -1,52 +1,85 @@
 import 'package:flutter/material.dart';
-import 'pegawai_detail.dart';
-import 'pasien_detail.dart';
+import 'package:klinik_app/ui/pegawai_detail_page.dart';
+import 'package:klinik_app/ui/pegawai_item_page.dart';
+import 'package:klinik_app/ui/pegawai_form_page.dart';
+import 'package:klinik_app/widget/sidebar.dart';
+
 import '../model/pegawai.dart';
-import '../model/pasien.dart';
+import '../service/pegawai_service.dart';
 
 class PegawaiPage extends StatefulWidget {
-  const PegawaiPage({super.key});
+  PegawaiPage({super.key});
 
   @override
   State<PegawaiPage> createState() => _PegawaiPageState();
 }
 
 class _PegawaiPageState extends State<PegawaiPage> {
+  Stream<List<Pegawai>> getList() async* {
+    List<Pegawai> data = await PegawaiService().listData();
+    yield data;
+  }
+
+  Future refreshData() async {
+    await Future.delayed(Duration(seconds: 1));
+    setState(() {
+      getList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Data RS")),
-      body: ListView(
-        children: [
+      drawer: Sidebar(),
+      appBar: AppBar(
+        title: Text("Data Pegawai", style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.blue,
+        leading: Builder(
+            builder: (context) {
+              return IconButton(
+                icon: Icon(Icons.menu, color: Colors.white),
+                onPressed: () => Scaffold.of(context).openDrawer(),
+              );
+            }
+        ),
+        actions: [
           GestureDetector(
-            child: Card(
-              child: ListTile(
-                title: const Text("Pegawai"),
-              ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(Icons.add, color: Colors.white),
             ),
             onTap: () {
-              Pegawai pegawai = new Pegawai(namaPegawai: "Nama Pegawai");
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PegawaiDetail(pegawai: pegawai)));
+                  context, MaterialPageRoute(builder: (context) => 	PegawaiForm()));
             },
-          ),
-          GestureDetector(
-            child: Card(
-              child: ListTile(
-                title: const Text("Pasien"),
-              ),
-            ),
-            onTap: () {
-              Pasien pasien = new Pasien(namaPasien: "Nama Pasien");
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PasienDetail(pasien: pasien)));
-            },
-          ),
+          )
         ],
+      ),
+      body: RefreshIndicator(
+        onRefresh: refreshData,
+        child: StreamBuilder(
+          stream: getList(),
+          builder: (context, AsyncSnapshot snapshot){
+            if(snapshot.hasError){
+              return Text(snapshot.error.toString());
+            }
+            if (snapshot.connectionState != ConnectionState.done){
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if(!snapshot.hasData && snapshot.connectionState == ConnectionState.done){
+              return Text("Data Kosong");
+            }
+
+            return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  return PegawaiItem(pegawai: snapshot.data[index]);
+                }
+            );
+          },
+        ),
       ),
     );
   }

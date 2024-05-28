@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import '/ui/poli_page.dart';
-import '/ui/pegawai_page.dart';
+import 'package:klinik_app/ui/beranda.dart';
+import 'package:klinik_app/ui/login.dart';
+import '/helpers/user_info.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Klinik APP',
-      debugShowCheckedModeBanner: false,
-      home: PegawaiPage(),
-    );
-  }
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  var token = await UserInfo().getToken();
+  print(token);
+  runApp(MaterialApp(
+    title: "Klinik App",
+    debugShowCheckedModeBanner: false,
+    home: token == null ? Login() : Beranda(),
+  ));
 }

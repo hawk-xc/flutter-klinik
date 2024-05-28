@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../model/pegawai.dart';
-import 'pegawai_detail.dart';
+import '../../model/pegawai.dart';
+import 'pegawai_detail_page.dart';
 
 class PegawaiItem extends StatelessWidget {
   final Pegawai pegawai;
@@ -16,10 +16,8 @@ class PegawaiItem extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => PegawaiDetail(pegawai: pegawai)));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PegawaiDetailPage(pegawai: pegawai)));
       },
     );
   }

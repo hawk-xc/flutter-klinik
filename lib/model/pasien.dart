@@ -1,10 +1,10 @@
 class Pasien {
   String? id;
+  String nomorRMPasien;
   String namaPasien;
-  Pasien({this.id, required this.namaPasien});
-  get idPasien => 'id';
-  get nomor_rm => 'nomor rm';
-  get tanggal_lahir => 'tanggal lahir';
-  get nomor_telepon => 'nomor telepon';
-  get alamat => 'alamat';
+  String tgllhrPasien;
+  String telpPasien;
+  String alamatPasien;
+
+  Pasien({this.id, required this.nomorRMPasien, required this.namaPasien, required this.tgllhrPasien, required this.telpPasien, required this.alamatPasien});
 }
